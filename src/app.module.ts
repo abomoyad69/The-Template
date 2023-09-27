@@ -1,7 +1,6 @@
 import { AuthModule } from './modules/auth/auth.module';
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { RedisMiddleWare } from './redis/redis.middlware';
 import { MyLogger } from './services/logger/my-logger';
@@ -17,7 +16,6 @@ import { RequestInterceptor } from './interceptors/request.interceptor';
     TypeOrmModule.forRoot(ormconfig),
     AuthModule
   ],
-  controllers: [AppController],
   providers: [AppService, MyLogger, {provide: APP_INTERCEPTOR, useClass: RequestInterceptor}],
 })
 export class AppModule {
